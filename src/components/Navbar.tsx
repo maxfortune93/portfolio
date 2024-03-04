@@ -35,7 +35,7 @@ const Navbar = () => {
         };
     }, []);
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 bg-opacity-100">
+    <nav className="fixed mx-auto border-b border-[#33353F] bg-black top-0 left-0 right-0 z-10 bg-opacity-100">
         <div className='flex fle-wrap items-center justify-between mx-auto px-4 py-2 container lg:py-4'>
             <Link href={'/'} className='font-semibold'>
                 Marouane
