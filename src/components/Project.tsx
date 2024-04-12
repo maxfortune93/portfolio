@@ -1,6 +1,7 @@
 'use client'
 import React, { useRef } from 'react'
 import CustomCard from './CustomCard';
+import CardComponent from './NewCustomCard';
 
 const projectsData = [
     {
@@ -61,14 +62,14 @@ const projectsData = [
 const Project = () => {
     const ref = useRef(null);
   return (
-    <section id='projects'>
+    <section id='#projects'>
         <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
             My Projects
         </h2>
         <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ul ref={ref} className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 md:gap-5 mx-auto">
+        <div ref={ref} className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 md:gap-5 mx-auto">
         {projectsData.map((project) => (
-            <CustomCard
+            <CardComponent
               key={project.id}
               title={project.title}
               description={project.description}
@@ -77,7 +78,7 @@ const Project = () => {
               previewUrl={project.previewUrl}
             />
         ))}
-      </ul>
+      </div>
         </div>
     </section>
   )

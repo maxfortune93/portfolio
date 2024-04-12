@@ -13,6 +13,7 @@ export interface TabButtonProps {
 
 export interface CardProps {
     imgUrl: string;
+    imgAlt?: string;
     title: string;
     description: string;
     gitUrl: string;

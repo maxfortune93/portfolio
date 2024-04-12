@@ -8,7 +8,7 @@ import { TabButtonProps } from "../../types";
 // };
 
 const TabButton = ({ active, selectTab, children }: TabButtonProps) => {
-  const buttonClasses = active ? "text-white border-b border-green-400" : "text-[#ADB7BE]";
+  const buttonClasses = active ? "text-white border-b border-blue-500" : "text-[#ADB7BE]";
 
   return (
     <button onClick={selectTab}>

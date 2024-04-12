@@ -1,5 +1,6 @@
 import { About, Hero, Navbar, Project } from "@/components";
-import Image from "next/image";
+import { EmailSection } from "@/components/EmailSection";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -9,8 +10,9 @@ export default function Home() {
        <Hero/>
        <About/>
        <Project/>
+       <EmailSection />
       </div>
-      
+      <Footer/>
     </main>
   );
 }

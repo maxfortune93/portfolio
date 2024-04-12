@@ -67,7 +67,7 @@ const Navbar = () => {
           </ul>
             </div>
         </div>
-        <div className={`md:hidden bg-black opacity-100`}>
+        <div className={`md:hidden bg-black opacity-100 -z-50`}>
         {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
         </div>
     </nav>
