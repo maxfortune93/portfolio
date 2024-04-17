@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from 'react'
 import GithubIcon from "../../public/github.svg";
 import LinkedinIcon from "../../public/linkedin.svg";
+import { RevealOnScroll } from './RevealOnScroll';
 
 export const EmailSection = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -40,6 +41,7 @@ export const EmailSection = () => {
     }
   }
   return (
+    <RevealOnScroll>  
     <section 
         id='#contact' 
         className='grid md:grid-cols-2 my-12 py-24 gap-5 relative'>
@@ -122,5 +124,6 @@ export const EmailSection = () => {
   
       </div>
     </section>
+    </RevealOnScroll>
   )
 }

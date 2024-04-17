@@ -1,6 +1,7 @@
 import { CardProps } from "../../types";
 import Link from 'next/link';
 import Image from 'next/image';
+import { RevealOnScroll } from "./RevealOnScroll";
 
 interface CardComponentProps{
     imgUrl: string;
@@ -13,6 +14,7 @@ interface CardComponentProps{
 // ({imgUrl, title, description, gitUrl, previewUrl}: CardProps)
 const CardComponent = ({ imgUrl, imgAlt, title, description, gitUrl, previewUrl }: CardProps) => {
   return (
+    <RevealOnScroll>   
     <div className="relative sm:h-[21rem] w-full mb-6 bg-gray-800 rounded-3xl overflow-hidden shadow-custom group">
       <img
         loading='lazy'
@@ -48,6 +50,7 @@ const CardComponent = ({ imgUrl, imgAlt, title, description, gitUrl, previewUrl 
             </div>
       </div>
     </div>
+    </RevealOnScroll>
   );
 };
 
