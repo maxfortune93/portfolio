@@ -8,7 +8,7 @@ interface RevealOnScrollProps {
 export const RevealOnScroll = ({children}: RevealOnScrollProps) => {
     const ref = useRef(null);
     const controls = useAnimation();
-    const isInView = useInView(ref);
+    const isInView = useInView(ref, { once: true });
     // useInView(ref, { once: true });
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export const RevealOnScroll = ({children}: RevealOnScrollProps) => {
     <motion.div
       ref={ref}
       variants={{
-        hidden: {opacity: 0, scale: 0.8, y: 75},
+        hidden: {opacity: 0, scale: 0.8, y: 80},
         visible: {opacity: 1, scale: 1, y: 0}
       }}
       initial="hidden"
