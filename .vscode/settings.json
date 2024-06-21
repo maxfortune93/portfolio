@@ -1,0 +1,12 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+      "javascript"
+    ],
+    "nuxt.isNuxtApp": false,
+    // "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+
+  }
+  
