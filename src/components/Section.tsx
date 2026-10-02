@@ -1,3 +1,5 @@
+import { Reveal } from './Reveal';
+
 interface SectionProps {
   id: string;
   title: string;
@@ -7,20 +9,19 @@ interface SectionProps {
 
 export function Section({ id, title, intro, children }: SectionProps) {
   return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-title`}
-      className="border-t border-line py-16 sm:py-20"
-    >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <div className="mb-10 flex max-w-2xl flex-col gap-3">
-          <h2 id={`${id}-title`} className="font-display text-3xl font-bold sm:text-4xl">
-            {title}
+    <section id={id} aria-labelledby={`${id}-title`} className="py-20 sm:py-28">
+      <Reveal className="mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="mb-12 flex max-w-2xl flex-col gap-4">
+          <h2
+            id={`${id}-title`}
+            className="font-display text-4xl font-bold tracking-tight sm:text-6xl"
+          >
+            <span className="gradient-text">{title}</span>
           </h2>
-          {intro ? <p className="text-muted">{intro}</p> : null}
+          {intro ? <p className="text-lg text-muted">{intro}</p> : null}
         </div>
         {children}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -16,6 +16,7 @@ const config: Config = {
         accent: token('accent'),
         'accent-soft': token('accent-soft'),
         'accent-fg': token('accent-fg'),
+        'accent-2': token('accent-2'),
         danger: token('danger'),
       },
       fontFamily: {

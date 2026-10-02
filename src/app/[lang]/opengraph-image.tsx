@@ -23,7 +23,7 @@ export default function OpenGraphImage({ params }: { params: { lang: string } })
         }}
       >
         <div
-          style={{ display: 'flex', fontSize: 28, color: '#5aa7f5', letterSpacing: 2 }}
+          style={{ display: 'flex', fontSize: 28, color: '#ff7a3d', letterSpacing: 2 }}
         >
           {dict.hero.availability.toUpperCase()}
         </div>

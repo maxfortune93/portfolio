@@ -8,6 +8,7 @@ import { Hero } from '@/components/Hero';
 import { JsonLd } from '@/components/JsonLd';
 import { Projects } from '@/components/Projects';
 import { Stack } from '@/components/Stack';
+import { StackMarquee } from '@/components/StackMarquee';
 import { getDictionary, getProjects, isLocale } from '@/content';
 import { buildStructuredData } from '@/lib/structured-data';
 
@@ -27,6 +28,7 @@ export default function Home({ params }: { params: { lang: string } }) {
       <Header lang={lang} dict={dict} showExperience={dict.experience.items.length > 0} />
       <main id="main">
         <Hero dict={dict} />
+        <StackMarquee dict={dict} />
         <Projects dict={dict} projects={getProjects(lang)} />
         <About dict={dict} />
         <Stack dict={dict} />

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import type { ResolvedProject } from '@/content';
 import { ArrowUpRightIcon } from './Icons';
+import { TiltCard } from './TiltCard';
 
 interface Labels {
   all: string;
@@ -73,9 +74,9 @@ export function ProjectGrid({
         <ul className="grid gap-6 md:grid-cols-2">
           {visible.map((project) => (
             <li key={project.slug} className="min-w-0">
-              <article
+              <TiltCard
                 id={`project-${project.slug}`}
-                className="flex h-full flex-col gap-4 rounded-lg border border-line bg-surface p-6"
+                className="glass flex h-full flex-col gap-4 rounded-2xl border border-line p-6"
               >
                 {project.image ? (
                   <Image
@@ -85,7 +86,21 @@ export function ProjectGrid({
                     height={450}
                     className="aspect-video w-full rounded-md border border-line object-cover"
                   />
-                ) : null}
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="relative grid aspect-[16/7] place-items-center overflow-hidden rounded-lg border border-line bg-gradient-to-br from-accent/25 via-accent-2/10 to-transparent"
+                  >
+                    <span className="outline-text font-display text-6xl font-bold tracking-tighter sm:text-7xl">
+                      {project.title
+                        .split(' ')
+                        .map((word) => word[0])
+                        .join('')
+                        .slice(0, 3)
+                        .toUpperCase()}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-xl font-bold">{project.title}</h3>
                   {project.year ? (
@@ -134,7 +149,7 @@ export function ProjectGrid({
                     </a>
                   ) : null}
                 </div>
-              </article>
+              </TiltCard>
             </li>
           ))}
         </ul>

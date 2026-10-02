@@ -1,9 +1,11 @@
 import type { Dictionary } from '@/content';
 import { profile } from '@/content';
 import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
+import { HeroScene } from './HeroScene';
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { hero } = dict;
+  const [firstName, ...rest] = profile.name.split(' ');
   const facts = [
     { label: hero.factRole, value: hero.role },
     { label: hero.factStack, value: profile.mainStack.join(', ') },
@@ -12,38 +14,54 @@ export function Hero({ dict }: { dict: Dictionary }) {
   ];
 
   return (
-    <section
-      aria-labelledby="hero-title"
-      className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24"
-    >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rise flex flex-col gap-6">
-          <p className="inline-flex w-fit items-center gap-2 rounded-full bg-accent-soft px-3 py-1 font-mono text-xs text-accent">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
+      {/* Cena 3D atrás do texto. No celular fica mais discreta para não atrapalhar a leitura. */}
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 sm:left-[25%] sm:opacity-100 lg:left-[44%]">
+        <HeroScene />
+      </div>
+
+      <div className="mx-auto flex max-w-5xl flex-col gap-14 px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28">
+        <div className="rise flex flex-col gap-7">
+          <p className="glass inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-1.5 font-mono text-xs text-accent">
+            <span className="relative flex h-2 w-2">
+              <span
+                aria-hidden="true"
+                className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"
+              />
+              <span
+                aria-hidden="true"
+                className="relative inline-flex h-2 w-2 rounded-full bg-accent"
+              />
+            </span>
             {hero.availability}
           </p>
+
           <h1
             id="hero-title"
-            className="font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+            className="font-display font-bold leading-[0.92] tracking-tighter"
           >
-            {profile.name}
-            <span className="mt-2 block text-3xl font-medium text-muted sm:text-4xl">
+            <span className="block text-6xl sm:text-8xl lg:text-9xl">{firstName}</span>
+            <span className="outline-text block text-6xl sm:text-8xl lg:text-9xl">
+              {rest.join(' ')}
+            </span>
+            <span className="gradient-text mt-5 block text-2xl font-medium tracking-tight sm:text-4xl">
               {hero.role}
             </span>
           </h1>
-          <p className="max-w-xl text-lg text-muted">{hero.subtitle}</p>
+
+          <p className="max-w-xl text-lg text-muted sm:text-xl">{hero.subtitle}</p>
 
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-fg shadow-lg shadow-accent/30 transition-transform hover:-translate-y-0.5"
             >
               {hero.ctaProjects}
             </a>
             <a
               href={profile.resume.href}
               download={profile.resume.filename}
-              className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-medium hover:border-accent hover:text-accent"
+              className="glass inline-flex items-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
             >
               <DownloadIcon />
               {hero.ctaResume}
@@ -53,7 +71,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="grid h-11 w-11 place-items-center rounded-md border border-line text-muted hover:border-accent hover:text-accent"
+              className="glass grid h-12 w-12 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent"
             >
               <GithubIcon />
             </a>
@@ -62,37 +80,26 @@ export function Hero({ dict }: { dict: Dictionary }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="grid h-11 w-11 place-items-center rounded-md border border-line text-muted hover:border-accent hover:text-accent"
+              className="glass grid h-12 w-12 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent"
             >
               <LinkedinIcon />
             </a>
           </div>
         </div>
 
-        <aside
-          aria-labelledby="facts-title"
-          className="rise rise-delay min-w-0 rounded-lg border border-line bg-surface p-6"
-        >
-          <h2
-            id="facts-title"
-            className="mb-4 font-mono text-xs uppercase tracking-widest text-accent"
-          >
-            {hero.factsTitle}
-          </h2>
-          <dl className="flex flex-col gap-4">
-            {facts.map((fact) => (
-              <div
-                key={fact.label}
-                className="flex flex-col gap-1 border-b border-line pb-4 last:border-0 last:pb-0"
-              >
-                <dt className="font-mono text-xs uppercase tracking-wider text-muted">
-                  {fact.label}
-                </dt>
-                <dd className="break-words text-sm font-medium">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </aside>
+        <dl className="rise rise-delay glass grid min-w-0 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {facts.map((fact) => (
+            <div
+              key={fact.label}
+              className="flex min-w-0 flex-col gap-1 bg-surface/80 p-5"
+            >
+              <dt className="font-mono text-xs uppercase tracking-wider text-accent">
+                {fact.label}
+              </dt>
+              <dd className="break-words text-sm font-medium">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

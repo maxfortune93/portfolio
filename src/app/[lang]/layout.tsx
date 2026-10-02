@@ -87,7 +87,14 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <div aria-hidden="true" className="scroll-progress" />
+        <div aria-hidden="true" className="bg-aurora">
+          <div className="blob blob-a" />
+          <div className="blob blob-b" />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
