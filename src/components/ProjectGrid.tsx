@@ -14,6 +14,17 @@ interface Labels {
   empty: string;
 }
 
+/** Duas iniciais das primeiras palavras com letras (ignora pontuação e palavras curtas). */
+const initials = (title: string) =>
+  title
+    .replace(/[^\p{L}\s]/gu, ' ')
+    .split(/\s+/)
+    .filter((word) => word.length > 2)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+
 // O filtro só aparece quando há projetos suficientes para fazer diferença.
 const FILTER_MIN_PROJECTS = 4;
 
@@ -92,20 +103,16 @@ export function ProjectGrid({
                     className="relative grid aspect-[16/7] place-items-center overflow-hidden rounded-lg border border-line bg-gradient-to-br from-accent/25 via-accent-2/10 to-transparent"
                   >
                     <span className="outline-text font-display text-6xl font-bold tracking-tighter sm:text-7xl">
-                      {project.title
-                        .split(' ')
-                        .map((word) => word[0])
-                        .join('')
-                        .slice(0, 3)
-                        .toUpperCase()}
+                      {initials(project.title)}
                     </span>
                   </div>
                 )}
-                <div className="flex items-baseline justify-between gap-4">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline justify-between gap-4 font-mono text-xs text-muted">
+                    <span>{project.company ?? ''}</span>
+                    <span>{project.period ?? project.year}</span>
+                  </div>
                   <h3 className="font-display text-xl font-bold">{project.title}</h3>
-                  {project.year ? (
-                    <span className="font-mono text-xs text-muted">{project.year}</span>
-                  ) : null}
                 </div>
                 <p className="text-muted">{project.summary}</p>
                 {project.highlights.length > 0 ? (
@@ -125,30 +132,32 @@ export function ProjectGrid({
                     </li>
                   ))}
                 </ul>
-                <div className="flex gap-5 border-t border-line pt-4 text-sm font-medium">
-                  {project.links.repo ? (
-                    <a
-                      href={project.links.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 hover:text-accent"
-                    >
-                      {labels.repo}
-                      <ArrowUpRightIcon />
-                    </a>
-                  ) : null}
-                  {project.links.demo ? (
-                    <a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 hover:text-accent"
-                    >
-                      {labels.demo}
-                      <ArrowUpRightIcon />
-                    </a>
-                  ) : null}
-                </div>
+                {project.links.repo || project.links.demo ? (
+                  <div className="flex gap-5 border-t border-line pt-4 text-sm font-medium">
+                    {project.links.repo ? (
+                      <a
+                        href={project.links.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 hover:text-accent"
+                      >
+                        {labels.repo}
+                        <ArrowUpRightIcon />
+                      </a>
+                    ) : null}
+                    {project.links.demo ? (
+                      <a
+                        href={project.links.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 hover:text-accent"
+                      >
+                        {labels.demo}
+                        <ArrowUpRightIcon />
+                      </a>
+                    ) : null}
+                  </div>
+                ) : null}
               </TiltCard>
             </li>
           ))}

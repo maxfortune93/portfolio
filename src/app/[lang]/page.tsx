@@ -27,7 +27,7 @@ export default function Home({ params }: { params: { lang: string } }) {
       </a>
       <Header lang={lang} dict={dict} showExperience={dict.experience.items.length > 0} />
       <main id="main">
-        <Hero dict={dict} />
+        <Hero dict={dict} lang={lang} />
         <StackMarquee dict={dict} />
         <Projects dict={dict} projects={getProjects(lang)} />
         <About dict={dict} />

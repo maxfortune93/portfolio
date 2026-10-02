@@ -57,6 +57,7 @@ export function buildLlmsFullTxt(): string {
     dict.hero.subtitle,
     '',
     `Status: ${dict.hero.factStatusValue}.`,
+    `Location: ${profile.location.city}, ${profile.location.region}, Brazil${profile.location.remote ? ' (remote)' : ''}.`,
     '',
     `## ${dict.about.title}`,
     '',
@@ -82,9 +83,25 @@ export function buildLlmsFullTxt(): string {
       ? [
           `## ${dict.experience.title}`,
           '',
-          ...dict.experience.items.map(
-            (item) =>
-              `- ${item.title}, ${item.organization} (${item.period})${item.description ? `: ${item.description}` : ''}`,
+          ...dict.experience.items.flatMap((item) => [
+            `### ${item.title}, ${item.organization} (${item.period})`,
+            '',
+            ...(item.location ? [`${item.location}`, ''] : []),
+            ...(item.description ? [item.description, ''] : []),
+            ...(item.highlights ?? []).map((highlight) => `- ${highlight}`),
+            ...(item.tech?.length ? ['', `Technologies: ${item.tech.join(', ')}`] : []),
+            '',
+          ]),
+          `## ${dict.experience.educationTitle}`,
+          '',
+          ...dict.experience.education.map(
+            (item) => `- ${item.title}, ${item.organization} (${item.period})`,
+          ),
+          '',
+          `## ${dict.experience.languagesTitle}`,
+          '',
+          ...dict.experience.languages.map(
+            (language) => `- ${language.name}: ${language.level}`,
           ),
           '',
         ]
@@ -93,7 +110,10 @@ export function buildLlmsFullTxt(): string {
     '',
     `- GitHub: ${profile.links.github}`,
     `- LinkedIn: ${profile.links.linkedin}`,
-    `- Résumé (PDF, ${profile.resume.language}): ${getSiteUrl()}${profile.resume.href}`,
+    ...locales.map((locale) => {
+      const resume = profile.resumes[locale];
+      return `- Résumé for the ${locale} page (PDF, language: ${resume.language}): ${getSiteUrl()}${resume.href}`;
+    }),
     ...(profile.showEmail ? [`- Email: ${profile.email}`] : []),
     '',
   ];
@@ -109,10 +129,16 @@ export function buildProfileJson() {
     updatedFrom: profile.siteRepo,
     email: profile.showEmail ? profile.email : undefined,
     links: profile.links,
-    resume: {
-      url: `${siteUrl}${profile.resume.href}`,
-      language: profile.resume.language,
-    },
+    location: profile.location,
+    resumes: Object.fromEntries(
+      locales.map((locale) => [
+        locale,
+        {
+          url: `${siteUrl}${profile.resumes[locale].href}`,
+          language: profile.resumes[locale].language,
+        },
+      ]),
+    ),
     mainStack: profile.mainStack,
     pages: Object.fromEntries(locales.map((locale) => [locale, localeUrl(locale)])),
     content: Object.fromEntries(
@@ -128,6 +154,8 @@ export function buildProfileJson() {
             about: dict.about.paragraphs,
             stack: dict.stack.groups,
             experience: dict.experience.items,
+            education: dict.experience.education,
+            languages: dict.experience.languages,
             projects: getProjects(locale),
           },
         ];

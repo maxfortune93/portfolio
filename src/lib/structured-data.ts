@@ -24,6 +24,17 @@ export function buildStructuredData(locale: Locale) {
         description: dict.meta.description,
         sameAs: Object.values(profile.links),
         knowsAbout: stack,
+        knowsLanguage: dict.experience.languages.map((language) => language.name),
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: profile.location.city,
+          addressRegion: profile.location.region,
+          addressCountry: profile.location.country,
+        },
+        alumniOf: dict.experience.education.map((item) => ({
+          '@type': 'EducationalOrganization',
+          name: item.organization,
+        })),
         seeks: { '@type': 'Demand', description: dict.hero.availability },
       },
       {

@@ -1,9 +1,10 @@
-import type { Dictionary } from '@/content';
+import type { Dictionary, Locale } from '@/content';
 import { profile } from '@/content';
 import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
 
-export function Hero({ dict }: { dict: Dictionary }) {
+export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
   const { hero } = dict;
+  const resume = profile.resumes[lang];
   const [firstName, ...rest] = profile.name.split(' ');
   const facts = [
     { label: hero.factRole, value: hero.role },
@@ -53,12 +54,13 @@ export function Hero({ dict }: { dict: Dictionary }) {
               {hero.ctaProjects}
             </a>
             <a
-              href={profile.resume.href}
-              download={profile.resume.filename}
+              href={resume.href}
+              download={resume.filename}
               className="glass inline-flex items-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
             >
               <DownloadIcon />
               {hero.ctaResume}
+              {resume.language !== lang ? ` (${resume.language.toUpperCase()})` : ''}
             </a>
             <a
               href={profile.links.github}

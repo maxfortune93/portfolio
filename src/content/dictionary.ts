@@ -3,7 +3,10 @@ export interface TimelineItem {
   title: string;
   organization: string;
   period: string;
+  location?: string;
   description?: string;
+  highlights?: string[];
+  tech?: string[];
 }
 
 export interface Dictionary {
@@ -46,8 +49,16 @@ export interface Dictionary {
   };
   about: { title: string; paragraphs: string[] };
   stack: { title: string; groups: { name: string; items: string[] }[] };
-  /** Se `items` estiver vazio, a seção não aparece. */
-  experience: { title: string; items: TimelineItem[] };
+  /** Se `items` estiver vazio, a seção não aparece. Formação e idiomas aparecem junto dela. */
+  experience: {
+    title: string;
+    items: TimelineItem[];
+    technologies: string;
+    educationTitle: string;
+    education: TimelineItem[];
+    languagesTitle: string;
+    languages: { name: string; level: string }[];
+  };
   contact: {
     title: string;
     intro: string;
