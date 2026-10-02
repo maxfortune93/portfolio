@@ -24,15 +24,14 @@ Não é preciso mexer em componentes para trocar textos, projetos, stack ou link
 
 ## Tarefas comuns
 
-**Adicionar um projeto**: em `src/content/projects.ts`, copie um objeto do array `projects`, troque `slug`, `stack`, `links` e os textos `pt`/`en`/`fr`. Remova `draft: true` se houver. Imagem opcional em `public/images/projects/<slug>.png` com `image: '/images/projects/<slug>.png'`.
+**Adicionar um projeto pessoal** (experiência de trabalho vai em `experience.items`, não em `projects.ts`): em `src/content/projects.ts`, copie um objeto do array `projects`, troque `slug`, `stack`, `links` e os textos `pt`/`en`/`fr`. Remova `draft: true` se houver. Imagem opcional em `public/images/projects/<slug>.png` com `image: '/images/projects/<slug>.png'`.
 
-**Atualizar trajetória, formação e idiomas**: edite `experience.items`, `experience.education` e `experience.languages` nos três dicionários. Cada item de experiência aceita `highlights` (resultados) e `tech`. Com `items` vazio, a seção some da página e do menu. Fonte original: o CV mais recente em `public/pdf/`.
+**Atualizar experiência, formação e idiomas**: edite `experience.items`, `experience.education` e `experience.languages` nos três dicionários. Cada item de experiência aceita `highlights` (resultados) e `tech`. Com `items` vazio, a seção some da página e do menu. Fonte original: o CV mais recente em `public/pdf/`.
 
 **Adicionar um idioma**: inclua o código em `locales` (`locales.ts`), crie `dictionaries/<codigo>.ts` com o tipo `Dictionary`, registre em `src/content/index.ts` e preencha `text.<codigo>` em cada projeto. O TypeScript aponta o que faltar.
 
 **Trocar o CV**: coloque o PDF em `public/pdf/` e ajuste `profile.resumes` (um por idioma da página). Hoje PT e EN usam o CV em português e FR usa o CV em francês; o botão indica o idioma do arquivo quando difere do da página. Para criar CV em inglês, adicione o PDF e aponte `en` para ele.
 
-**Casos de trabalho sem repositório**: em `projects.ts`, use `links: {}`, `company` e `period`. O cartão mostra a empresa e some a linha de links.
 
 ## Como o site é montado
 - Uma página estática por idioma: `/pt`, `/en`, `/fr` (`src/app/[lang]/page.tsx`). `src/middleware.ts` redireciona `/` pelo cookie `NEXT_LOCALE` ou `Accept-Language`.

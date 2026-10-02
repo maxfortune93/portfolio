@@ -11,7 +11,7 @@ export const fr: Dictionary = {
     about: 'À propos',
     projects: 'Projets',
     stack: 'Stack',
-    experience: 'Parcours',
+    experience: 'Expérience',
     contact: 'Contact',
     skipToContent: 'Aller au contenu',
     openMenu: 'Ouvrir le menu',
@@ -37,7 +37,7 @@ export const fr: Dictionary = {
   projects: {
     title: 'Projets',
     intro:
-      'Cas de travail en fintech et projets personnels. Le travail en entreprise n’a pas de code public ; les projets personnels renvoient au dépôt.',
+      'Projets personnels, avec la stack utilisée et des liens vers le code et la démo.',
     filterAll: 'Tous',
     filterLabel: 'Filtrer par technologie',
     repo: 'Code',
@@ -119,7 +119,7 @@ export const fr: Dictionary = {
     ],
   },
   experience: {
-    title: 'Parcours',
+    title: 'Expérience',
     technologies: 'Technologies',
     items: [
       {

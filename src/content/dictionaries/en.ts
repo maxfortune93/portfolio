@@ -36,8 +36,7 @@ export const en: Dictionary = {
   },
   projects: {
     title: 'Projects',
-    intro:
-      'Work cases from fintech and personal projects. Company work has no public code; personal projects link to the repository.',
+    intro: 'Personal projects, with the stack used and links to the code and live demo.',
     filterAll: 'All',
     filterLabel: 'Filter by technology',
     repo: 'Code',

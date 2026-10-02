@@ -11,7 +11,7 @@ export const pt: Dictionary = {
     about: 'Sobre',
     projects: 'Projetos',
     stack: 'Stack',
-    experience: 'Trajetória',
+    experience: 'Experiência',
     contact: 'Contato',
     skipToContent: 'Pular para o conteúdo',
     openMenu: 'Abrir menu',
@@ -36,8 +36,7 @@ export const pt: Dictionary = {
   },
   projects: {
     title: 'Projetos',
-    intro:
-      'Casos de trabalho em fintech e projetos próprios. Os de empresa não têm código público; os próprios levam ao repositório.',
+    intro: 'Projetos pessoais, com a stack usada e links para o código e a demonstração.',
     filterAll: 'Todos',
     filterLabel: 'Filtrar por tecnologia',
     repo: 'Código',
@@ -119,7 +118,7 @@ export const pt: Dictionary = {
     ],
   },
   experience: {
-    title: 'Trajetória',
+    title: 'Experiência',
     technologies: 'Tecnologias',
     items: [
       {

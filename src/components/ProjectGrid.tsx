@@ -107,12 +107,11 @@ export function ProjectGrid({
                     </span>
                   </div>
                 )}
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-baseline justify-between gap-4 font-mono text-xs text-muted">
-                    <span>{project.company ?? ''}</span>
-                    <span>{project.period ?? project.year}</span>
-                  </div>
+                <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-display text-xl font-bold">{project.title}</h3>
+                  {project.year ? (
+                    <span className="font-mono text-xs text-muted">{project.year}</span>
+                  ) : null}
                 </div>
                 <p className="text-muted">{project.summary}</p>
                 {project.highlights.length > 0 ? (
