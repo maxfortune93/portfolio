@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfólio · Marouane Pondikpa
 
-## Getting Started
+Site pessoal em três idiomas (PT, EN, FR) feito com Next.js 14, TypeScript e Tailwind CSS.
+Pensado para ser o link do LinkedIn: apresentação rápida, projetos com links de demo e repositório, stack e contato.
 
-First, run the development server:
-
+## Rodar localmente
 ```bash
+npm install
+cp .env.example .env.local   # preencha RESEND_API_KEY para testar o formulário
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Atualizar o conteúdo
+Tudo fica em `src/content/`, sem mexer nos componentes:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `profile.ts`: nome, email, links, CV
+- `projects.ts`: projetos (copie um bloco, troque os campos, faça push)
+- `dictionaries/pt|en|fr.ts`: textos, stack, trajetória
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Detalhes e receitas em [AGENTS.md](./AGENTS.md).
 
-## Learn More
+## Deploy (Render)
+O repositório já vem com:
 
-To learn more about Next.js, take a look at the following resources:
+- **`.github/workflows/ci.yml`**: a cada push e PR roda lint, typecheck e build. Em push para `main`, se tudo passar, o job `deploy` chama o Render.
+- **`render.yaml`**: Blueprint do Render com o serviço web (Node, plano free, health check em `/api/health`). `autoDeploy` fica desligado de propósito: quem faz o deploy é o CI, só depois dos checks.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Passo a passo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. No Render: **New +** → **Blueprint**, aponte para este repositório (branch `main`) e confirme.
+2. Em **Environment** do serviço, preencha `RESEND_API_KEY` (e, se tiver domínio próprio, `NEXT_PUBLIC_SITE_URL`). Sem `NEXT_PUBLIC_SITE_URL`, o site usa a URL do Render.
+3. Em **Settings → Deploy Hook**, copie a URL e salve no GitHub como secret `RENDER_DEPLOY_HOOK_PORTFOLIO` (**Settings → Secrets and variables → Actions**). Sem o secret, o CI roda normalmente e só pula o deploy.
+4. Se mudar a URL do site depois (domínio novo), dispare um novo deploy: o sitemap, o canonical e o `llms.txt` são gerados no build.
 
-## Deploy on Vercel
+O plano free do Render dorme sem tráfego, então o primeiro acesso depois de um tempo pode demorar alguns segundos.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Feito para ser encontrado
+O site gera `/llms.txt`, `/llms-full.txt`, `/profile.json`, `/sitemap.xml`, `/robots.txt`,
+JSON-LD e metadados por idioma, tudo a partir do mesmo conteúdo.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Scripts
+`npm run dev` · `npm run build` · `npm run lint` · `npm run typecheck` · `npm run format`

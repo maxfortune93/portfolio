@@ -1,76 +1,102 @@
-'use client'
-import { handleScrollSection } from '@/utils';
-import Image from 'next/image';
-import { TypeAnimation } from 'react-type-animation';
+import type { Dictionary, Locale } from '@/content';
+import { profile } from '@/content';
+import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
 
-
-const Hero = () => {
-
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = 'pdf/resume_fr.pdf';  // Path to your resume file.
-    link.download = 'Marouane_Resume_Fr.pdf';  // Suggested filename to save as.
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
+export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
+  const { hero } = dict;
+  const resume = profile.resumes[lang];
+  const [firstName, ...rest] = profile.name.split(' ');
+  const facts = [
+    { label: hero.factRole, value: hero.role },
+    { label: hero.factStack, value: profile.mainStack.join(', ') },
+    { label: hero.factStatus, value: hero.factStatusValue },
+    ...(profile.showEmail ? [{ label: hero.factContact, value: profile.email }] : []),
+  ];
 
   return (
-    <section>
-        <div className='grid grid-cols-1 sm:grid-cols-12'>
-        <div className='col-span-7 place-self-center text-center sm:text-left'>
-        <h1 className='text-white mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold'>
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-              Hello, I&apos;m{" "}
+    <section aria-labelledby="hero-title" className="relative overflow-hidden">
+      <div className="mx-auto flex max-w-5xl flex-col gap-14 px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28">
+        <div className="rise flex flex-col gap-7">
+          <p className="glass inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-1.5 font-mono text-xs text-accent">
+            <span className="relative flex h-2 w-2">
+              <span
+                aria-hidden="true"
+                className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"
+              />
+              <span
+                aria-hidden="true"
+                className="relative inline-flex h-2 w-2 rounded-full bg-accent"
+              />
             </span>
-            <br></br>
-            <TypeAnimation
-              sequence={[
-                "Marouane",
-                1500,
-                "Full Stack Developer",
-                1500,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
-        </h1>
-        <p className='text-[#ADB7BE] text-base sm:text-lg lg:text-xl mb-6'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, debitis eaque! Repudiandae eius nobis iusto sed porro iure eveniet voluptas libero sapiente dolor? Necessitatibus reiciendis voluptatum aperiam quod, mollitia beatae?
-        </p>
-        <div >
-            <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 
-             bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 hover:bg-slate-200'
-             onClick={() => handleScrollSection('#contact')}
-             >
-              Hire Me
-            </button>
-            <button className='px-1 inline-block py-1 rounded-full w-full sm:w-fit 
-                 bg-gradient-to-br from-green-400 to-blue-500 hover:bg-slate-800 
-                 mt-3'
-                 onClick={handleDownload}
-            >
-                <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                  Download CV
-                </span>
-            </button>
-        </div>
-        </div>
-        <div className='col-span-5 place-self-center mt-4 lg:mt-0'>
-            <div className='rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[350px] lg:h-[350px] relative'>
-            <Image 
-                src='/images/hero-image.png'
-                alt='hero image'
-                className='absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'
-                width={300}
-                height={300}
-            />
-            </div>
-        </div>
-        </div>
-    </section>
-  )
-}
+            {hero.availability}
+          </p>
 
-export default Hero
+          <h1
+            id="hero-title"
+            className="font-display font-bold leading-[0.92] tracking-tighter"
+          >
+            <span className="block text-6xl sm:text-8xl lg:text-9xl">{firstName}</span>
+            <span className="outline-text block text-6xl sm:text-8xl lg:text-9xl">
+              {rest.join(' ')}
+            </span>
+            <span className="gradient-text mt-5 block text-2xl font-medium tracking-tight sm:text-4xl">
+              {hero.role}
+            </span>
+          </h1>
+
+          <p className="max-w-xl text-lg text-muted sm:text-xl">{hero.subtitle}</p>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-fg shadow-lg shadow-accent/30 transition-transform hover:-translate-y-0.5"
+            >
+              {hero.ctaProjects}
+            </a>
+            <a
+              href={resume.href}
+              download={resume.filename}
+              className="glass inline-flex items-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+            >
+              <DownloadIcon />
+              {hero.ctaResume}
+              {resume.language !== lang ? ` (${resume.language.toUpperCase()})` : ''}
+            </a>
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="glass grid h-12 w-12 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent"
+            >
+              <GithubIcon />
+            </a>
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="glass grid h-12 w-12 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent"
+            >
+              <LinkedinIcon />
+            </a>
+          </div>
+        </div>
+
+        <dl className="rise rise-delay glass grid min-w-0 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.1fr_1.7fr]">
+          {facts.map((fact) => (
+            <div
+              key={fact.label}
+              className="flex min-w-0 flex-col gap-1 bg-surface/80 p-5"
+            >
+              <dt className="font-mono text-xs uppercase tracking-wider text-accent">
+                {fact.label}
+              </dt>
+              <dd className="break-words text-sm font-medium">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
