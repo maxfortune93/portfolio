@@ -16,7 +16,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       {/* Cena 3D atrás do texto. No celular fica mais discreta para não atrapalhar a leitura. */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 sm:left-[25%] sm:opacity-100 lg:left-[44%]">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-20 sm:left-[25%] sm:opacity-100 lg:left-[50%]">
         <HeroScene />
       </div>
 
@@ -87,7 +87,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
           </div>
         </div>
 
-        <dl className="rise rise-delay glass grid min-w-0 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="rise rise-delay glass grid min-w-0 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-[1fr_1.3fr_1.1fr_1.7fr]">
           {facts.map((fact) => (
             <div
               key={fact.label}

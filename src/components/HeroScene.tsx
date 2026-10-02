@@ -43,7 +43,7 @@ export function HeroScene() {
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-      camera.position.z = 6.8;
+      camera.position.z = 8;
 
       const accent = new THREE.Color(themeColor('--accent'));
       const accent2 = new THREE.Color(themeColor('--accent-2'));
@@ -54,7 +54,7 @@ export function HeroScene() {
       scene.add(group);
 
       // Nó toroidal: arame + pontos.
-      const knotGeometry = new THREE.TorusKnotGeometry(1.15, 0.34, 220, 24, 2, 3);
+      const knotGeometry = new THREE.TorusKnotGeometry(1.1, 0.16, 110, 6, 2, 3);
       const knotWire = new THREE.Mesh(
         knotGeometry,
         new THREE.MeshBasicMaterial({
@@ -82,7 +82,7 @@ export function HeroScene() {
         roughness: 0.35,
         metalness: 0.4,
       });
-      const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.62, 1), coreMaterial);
+      const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.34, 1), coreMaterial);
       group.add(core);
 
       const keyLight = new THREE.PointLight(accent, 40, 20);
@@ -92,7 +92,7 @@ export function HeroScene() {
       scene.add(keyLight, fillLight, new THREE.AmbientLight(0xffffff, 0.5));
 
       // Esferas em órbita.
-      const orbiters = [0, 1, 2].map((index) => {
+      const orbiters = [0].map((index) => {
         const mesh = new THREE.Mesh(
           new THREE.SphereGeometry(0.09 + index * 0.02, 20, 20),
           new THREE.MeshBasicMaterial({ color: index % 2 ? accent2 : accent }),
@@ -108,7 +108,7 @@ export function HeroScene() {
       });
 
       // Partículas distantes.
-      const count = 700;
+      const count = 160;
       const positions = new Float32Array(count * 3);
       for (let i = 0; i < count; i++) {
         const radius = 2.6 + Math.random() * 3.2;
@@ -139,7 +139,7 @@ export function HeroScene() {
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         const wide = width > 700;
-        group.position.x = wide ? 0.2 : 0;
+        group.position.x = wide ? 0.5 : 0;
         group.scale.setScalar(wide ? 1 : 0.8);
       };
       const resizeObserver = new ResizeObserver(resize);
