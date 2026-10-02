@@ -1,0 +1,34 @@
+# Render Blueprint do portfólio.
+# Como aplicar: no Render, "New +" → "Blueprint" → aponte para este repositório (branch main).
+# O Render mostra o que vai criar e só aplica quando você confirmar.
+#
+# `autoDeploy: false` é proposital: o deploy em push para `main` é feito pelo job
+# `deploy` de .github/workflows/ci.yml, que só chama o Render depois que lint,
+# typecheck e build passarem (via Deploy Hook; ver README > Deploy).
+#
+# Variáveis com `sync: false` são preenchidas no painel do Render (Environment).
+
+services:
+  - type: web
+    name: marouane-portfolio
+    runtime: node
+    plan: free
+    autoDeploy: false
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      # Chave da API do Resend (formulário de contato).
+      - key: RESEND_API_KEY
+        sync: false
+      # Domínio final, ex.: https://marouane.dev. Sem isso, usa a URL do Render.
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: RESEND_FROM
+        value: Portfolio <onboarding@resend.dev>
+      - key: CONTACT_TO_EMAIL
+        sync: false
+      - key: CONTACT_SEND_CONFIRMATION
+        value: "false"

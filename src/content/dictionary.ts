@@ -63,6 +63,8 @@ export interface Dictionary {
     title: string;
     intro: string;
     orWrite: string;
+    whatsapp: string;
+    whatsappMessage: string;
     social: string;
     form: {
       name: string;

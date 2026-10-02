@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: lint, typecheck & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://example.com
+
+  deploy:
+    name: Deploy to Render
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy hook
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_PORTFOLIO" ]; then
+            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_PORTFOLIO"
+          else
+            echo "RENDER_DEPLOY_HOOK_PORTFOLIO is not set, skipping deploy. See README > Deploy."
+          fi
+        env:
+          RENDER_DEPLOY_HOOK_PORTFOLIO: ${{ secrets.RENDER_DEPLOY_HOOK_PORTFOLIO }}

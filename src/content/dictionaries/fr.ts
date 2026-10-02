@@ -234,6 +234,8 @@ export const fr: Dictionary = {
     intro:
       'Envie de parler d’un poste ou d’un projet ? Envoyez un message et je réponds par email.',
     orWrite: 'Ou écrivez directement',
+    whatsapp: 'Discuter sur WhatsApp',
+    whatsappMessage: 'Bonjour Marouane ! J’ai vu votre portfolio et j’aimerais discuter.',
     social: 'Profils',
     form: {
       name: 'Nom',

@@ -233,6 +233,8 @@ export const en: Dictionary = {
     intro:
       'Want to talk about a role or a project? Send a message and I will reply by email.',
     orWrite: 'Or write directly',
+    whatsapp: 'Chat on WhatsApp',
+    whatsappMessage: 'Hi Marouane! I saw your portfolio and would like to talk.',
     social: 'Profiles',
     form: {
       name: 'Name',

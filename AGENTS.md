@@ -48,6 +48,12 @@ Gerados automaticamente a partir de `src/content/`:
 
 Ao mudar o conteúdo, nada disso precisa de edição manual.
 
+## CI e deploy
+`.github/workflows/ci.yml` roda lint, typecheck e build; em `main` chama o Deploy Hook do Render (`RENDER_DEPLOY_HOOK_PORTFOLIO`). O serviço está descrito em `render.yaml`. Health check: `/api/health`.
+
+## WhatsApp
+Opcional: preencha `profile.whatsapp` (só dígitos com DDI) para mostrar o botão na seção de contato. Vazio, o botão não aparece.
+
 ## Variáveis de ambiente
 Veja `.env.example`. Obrigatória em produção para o formulário: `RESEND_API_KEY`. Defina `NEXT_PUBLIC_SITE_URL` com o domínio final.
 

@@ -5,6 +5,9 @@ import { locales } from '@/content';
 export function getSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/$/, '');
+  // Render define RENDER_EXTERNAL_URL (https://<servico>.onrender.com) em serviços web.
+  const render = process.env.RENDER_EXTERNAL_URL;
+  if (render) return render.replace(/\/$/, '');
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   if (vercel) return `https://${vercel}`;
   return 'http://localhost:3000';

@@ -1,7 +1,7 @@
 import type { Dictionary, Locale } from '@/content';
 import { profile } from '@/content';
 import { ContactForm } from './ContactForm';
-import { GithubIcon, LinkedinIcon } from './Icons';
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from './Icons';
 import { Section } from './Section';
 
 export function Contact({ dict, lang }: { dict: Dictionary; lang: Locale }) {
@@ -9,6 +9,10 @@ export function Contact({ dict, lang }: { dict: Dictionary; lang: Locale }) {
     { label: 'GitHub', href: profile.links.github, icon: <GithubIcon /> },
     { label: 'LinkedIn', href: profile.links.linkedin, icon: <LinkedinIcon /> },
   ];
+
+  const whatsappHref = profile.whatsapp
+    ? `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(dict.contact.whatsappMessage)}`
+    : null;
 
   return (
     <Section id="contact" title={dict.contact.title} intro={dict.contact.intro}>
@@ -26,6 +30,17 @@ export function Contact({ dict, lang }: { dict: Dictionary; lang: Locale }) {
                 {profile.email}
               </a>
             </div>
+          ) : null}
+          {whatsappHref ? (
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+            >
+              <WhatsappIcon />
+              {dict.contact.whatsapp}
+            </a>
           ) : null}
           <div className="flex flex-col gap-3">
             <h3 className="font-mono text-xs uppercase tracking-widest text-accent">
