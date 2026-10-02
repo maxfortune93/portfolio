@@ -1,12 +1,25 @@
-import React from 'react'
+import type { Dictionary } from '@/content';
+import { profile } from '@/content';
 
-export const Footer = () => {
+export function Footer({ dict }: { dict: Dictionary }) {
   return (
-    <footer className="footer border z-10 border-t-[#33353F] border-l-transparent border-r-transparent text-white">
-      <div className="container p-12 flex justify-between">
-        <span>LOGO</span>
-        <p className="text-slate-600">All rights reserved.</p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>
+          © {new Date().getFullYear()} {profile.name}. {dict.footer.rights}
+        </p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <span>{dict.footer.builtWith}</span>
+          <a
+            href={profile.siteRepo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent"
+          >
+            {dict.footer.source}
+          </a>
+        </p>
       </div>
     </footer>
-  )
+  );
 }

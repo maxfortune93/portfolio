@@ -1,42 +1,122 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
+/*
+ * Tema: o claro é o padrão em :root; o escuro vale pelo sistema (prefers-color-scheme)
+ * ou pela escolha manual (data-theme no <html>, gravada pelo botão de tema).
+ * Valores em canais RGB para o Tailwind aplicar opacidade (bg-accent/10).
+ */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg: 246 247 249;
+  --surface: 255 255 255;
+  --fg: 20 24 31;
+  --muted: 91 101 116;
+  --line: 217 222 230;
+  --accent: 11 107 203;
+  --accent-soft: 227 239 252;
+  --accent-fg: 255 255 255;
+  --danger: 180 35 24;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  :root:not([data-theme='light']) {
+    --bg: 15 19 24;
+    --surface: 23 28 35;
+    --fg: 232 236 242;
+    --muted: 154 165 181;
+    --line: 42 50 61;
+    --accent: 90 167 245;
+    --accent-soft: 24 40 58;
+    --accent-fg: 10 20 30;
+    --danger: 248 113 113;
+    color-scheme: dark;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+:root[data-theme='dark'] {
+  --bg: 15 19 24;
+  --surface: 23 28 35;
+  --fg: 232 236 242;
+  --muted: 154 165 181;
+  --line: 42 50 61;
+  --accent: 90 167 245;
+  --accent-soft: 24 40 58;
+  --accent-fg: 10 20 30;
+  --danger: 248 113 113;
+  color-scheme: dark;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.25);
+}
+
+/* Ícone do botão de tema: mostra a lua no tema claro e o sol no escuro. */
+.icon-sun {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .icon-sun {
+    display: block;
+  }
+  :root:not([data-theme='light']) .icon-moon {
+    display: none;
+  }
+}
+:root[data-theme='dark'] .icon-sun {
+  display: block;
+}
+:root[data-theme='dark'] .icon-moon {
+  display: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s ease-out both;
+}
+.rise-delay {
+  animation-delay: 0.12s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
   }
 }

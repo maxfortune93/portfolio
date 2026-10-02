@@ -1,76 +1,99 @@
-'use client'
-import { handleScrollSection } from '@/utils';
-import Image from 'next/image';
-import { TypeAnimation } from 'react-type-animation';
+import type { Dictionary } from '@/content';
+import { profile } from '@/content';
+import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
 
-
-const Hero = () => {
-
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = 'pdf/resume_fr.pdf';  // Path to your resume file.
-    link.download = 'Marouane_Resume_Fr.pdf';  // Suggested filename to save as.
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-};
+export function Hero({ dict }: { dict: Dictionary }) {
+  const { hero } = dict;
+  const facts = [
+    { label: hero.factRole, value: hero.role },
+    { label: hero.factStack, value: profile.mainStack.join(', ') },
+    { label: hero.factStatus, value: hero.factStatusValue },
+    ...(profile.showEmail ? [{ label: hero.factContact, value: profile.email }] : []),
+  ];
 
   return (
-    <section>
-        <div className='grid grid-cols-1 sm:grid-cols-12'>
-        <div className='col-span-7 place-self-center text-center sm:text-left'>
-        <h1 className='text-white mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold'>
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
-              Hello, I&apos;m{" "}
+    <section
+      aria-labelledby="hero-title"
+      className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24"
+    >
+      <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
+        <div className="rise flex flex-col gap-6">
+          <p className="inline-flex w-fit items-center gap-2 rounded-full bg-accent-soft px-3 py-1 font-mono text-xs text-accent">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+            {hero.availability}
+          </p>
+          <h1
+            id="hero-title"
+            className="font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+          >
+            {profile.name}
+            <span className="mt-2 block text-3xl font-medium text-muted sm:text-4xl">
+              {hero.role}
             </span>
-            <br></br>
-            <TypeAnimation
-              sequence={[
-                "Marouane",
-                1500,
-                "Full Stack Developer",
-                1500,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
-        </h1>
-        <p className='text-[#ADB7BE] text-base sm:text-lg lg:text-xl mb-6'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, debitis eaque! Repudiandae eius nobis iusto sed porro iure eveniet voluptas libero sapiente dolor? Necessitatibus reiciendis voluptatum aperiam quod, mollitia beatae?
-        </p>
-        <div >
-            <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 
-             bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 hover:bg-slate-200'
-             onClick={() => handleScrollSection('#contact')}
-             >
-              Hire Me
-            </button>
-            <button className='px-1 inline-block py-1 rounded-full w-full sm:w-fit 
-                 bg-gradient-to-br from-green-400 to-blue-500 hover:bg-slate-800 
-                 mt-3'
-                 onClick={handleDownload}
-            >
-                <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
-                  Download CV
-                </span>
-            </button>
-        </div>
-        </div>
-        <div className='col-span-5 place-self-center mt-4 lg:mt-0'>
-            <div className='rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[350px] lg:h-[350px] relative'>
-            <Image 
-                src='/images/hero-image.png'
-                alt='hero image'
-                className='absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'
-                width={300}
-                height={300}
-            />
-            </div>
-        </div>
-        </div>
-    </section>
-  )
-}
+          </h1>
+          <p className="max-w-xl text-lg text-muted">{hero.subtitle}</p>
 
-export default Hero
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-fg hover:opacity-90"
+            >
+              {hero.ctaProjects}
+            </a>
+            <a
+              href={profile.resume.href}
+              download={profile.resume.filename}
+              className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-medium hover:border-accent hover:text-accent"
+            >
+              <DownloadIcon />
+              {hero.ctaResume}
+            </a>
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="grid h-11 w-11 place-items-center rounded-md border border-line text-muted hover:border-accent hover:text-accent"
+            >
+              <GithubIcon />
+            </a>
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="grid h-11 w-11 place-items-center rounded-md border border-line text-muted hover:border-accent hover:text-accent"
+            >
+              <LinkedinIcon />
+            </a>
+          </div>
+        </div>
+
+        <aside
+          aria-labelledby="facts-title"
+          className="rise rise-delay min-w-0 rounded-lg border border-line bg-surface p-6"
+        >
+          <h2
+            id="facts-title"
+            className="mb-4 font-mono text-xs uppercase tracking-widest text-accent"
+          >
+            {hero.factsTitle}
+          </h2>
+          <dl className="flex flex-col gap-4">
+            {facts.map((fact) => (
+              <div
+                key={fact.label}
+                className="flex flex-col gap-1 border-b border-line pb-4 last:border-0 last:pb-0"
+              >
+                <dt className="font-mono text-xs uppercase tracking-wider text-muted">
+                  {fact.label}
+                </dt>
+                <dd className="break-words text-sm font-medium">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+    </section>
+  );
+}
