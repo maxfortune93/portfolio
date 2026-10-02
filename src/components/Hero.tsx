@@ -1,7 +1,6 @@
 import type { Dictionary } from '@/content';
 import { profile } from '@/content';
 import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
-import { HeroScene } from './HeroScene';
 
 export function Hero({ dict }: { dict: Dictionary }) {
   const { hero } = dict;
@@ -14,12 +13,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
   ];
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
-      {/* Cena 3D atrás do texto. No celular fica mais discreta para não atrapalhar a leitura. */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-20 sm:left-[25%] sm:opacity-100 lg:left-[50%]">
-        <HeroScene />
-      </div>
-
+    <section aria-labelledby="hero-title" className="relative overflow-hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-14 px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28">
         <div className="rise flex flex-col gap-7">
           <p className="glass inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-1.5 font-mono text-xs text-accent">
