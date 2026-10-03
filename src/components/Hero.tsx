@@ -17,15 +17,15 @@ export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
     <section aria-labelledby="hero-title" className="relative overflow-hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-14 px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28">
         <div className="rise flex flex-col gap-7">
-          <p className="glass inline-flex w-fit items-center gap-2 rounded-full border border-line px-4 py-1.5 font-mono text-xs text-accent">
+          <p className="glass inline-flex w-fit items-center gap-2 rounded-full border border-success/40 px-4 py-1.5 font-mono text-xs text-success">
             <span className="relative flex h-2 w-2">
               <span
                 aria-hidden="true"
-                className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"
+                className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75"
               />
               <span
                 aria-hidden="true"
-                className="relative inline-flex h-2 w-2 rounded-full bg-accent"
+                className="relative inline-flex h-2 w-2 rounded-full bg-success"
               />
             </span>
             {hero.availability}

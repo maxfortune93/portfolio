@@ -18,6 +18,7 @@ const config: Config = {
         'accent-fg': token('accent-fg'),
         'accent-2': token('accent-2'),
         danger: token('danger'),
+        success: token('success'),
       },
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
