@@ -18,6 +18,7 @@
   --accent-fg: 255 255 255;
   --accent-2: 14 116 144;
   --danger: 180 35 24;
+  --success: 21 128 61;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,6 +33,7 @@
     --accent-fg: 20 10 5;
     --accent-2: 56 189 248;
     --danger: 248 113 113;
+    --success: 74 222 128;
     color-scheme: dark;
   }
 }
@@ -47,6 +49,7 @@
   --accent-fg: 20 10 5;
   --accent-2: 56 189 248;
   --danger: 248 113 113;
+  --success: 74 222 128;
   color-scheme: dark;
 }
 
@@ -221,7 +224,7 @@ h3 {
   flex-shrink: 0;
   gap: 3rem;
   padding-right: 3rem;
-  animation: marquee 32s linear infinite;
+  animation: marquee 150s linear infinite;
 }
 .marquee:hover .marquee-track {
   animation-play-state: paused;
