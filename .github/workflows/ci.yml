@@ -35,9 +35,14 @@ jobs:
       - name: Trigger Render deploy hook
         run: |
           if [ -n "$RENDER_DEPLOY_HOOK_PORTFOLIO" ]; then
-            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_PORTFOLIO"
+            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_PORTFOLIO" > /dev/null
+            echo "Render deploy triggered."
+            echo "Render deploy triggered for ${GITHUB_SHA::7}." >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "RENDER_DEPLOY_HOOK_PORTFOLIO is not set, skipping deploy. See README > Deploy."
+            # O job continua verde (o CI em si passou), mas o aviso fica visível na execução.
+            echo "::warning title=Render deploy skipped::Secret RENDER_DEPLOY_HOOK_PORTFOLIO is not set, so Render was NOT notified and the site was not updated. See README > Deploy."
+            echo "### Render deploy skipped" >> "$GITHUB_STEP_SUMMARY"
+            echo "Secret \`RENDER_DEPLOY_HOOK_PORTFOLIO\` is not set, so Render was not notified. Add it in Settings > Secrets and variables > Actions (see README > Deploy)." >> "$GITHUB_STEP_SUMMARY"
           fi
         env:
           RENDER_DEPLOY_HOOK_PORTFOLIO: ${{ secrets.RENDER_DEPLOY_HOOK_PORTFOLIO }}

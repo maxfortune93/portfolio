@@ -29,7 +29,7 @@ Passo a passo:
 
 1. No Render: **New +** → **Blueprint**, aponte para este repositório (branch `main`) e confirme.
 2. Em **Environment** do serviço, preencha `RESEND_API_KEY` (e, se tiver domínio próprio, `NEXT_PUBLIC_SITE_URL`). Sem `NEXT_PUBLIC_SITE_URL`, o site usa a URL do Render.
-3. Em **Settings → Deploy Hook**, copie a URL e salve no GitHub como secret `RENDER_DEPLOY_HOOK_PORTFOLIO` (**Settings → Secrets and variables → Actions**). Sem o secret, o CI roda normalmente e só pula o deploy.
+3. Em **Settings → Deploy Hook**, copie a URL e salve no GitHub como secret `RENDER_DEPLOY_HOOK_PORTFOLIO` (**Settings → Secrets and variables → Actions**). Sem o secret, o CI roda e o job de deploy termina com um **aviso amarelo** ("Render deploy skipped") na página da execução, sem atualizar o site. Com o secret, ele mostra "Render deploy triggered".
 4. Se mudar a URL do site depois (domínio novo), dispare um novo deploy: o sitemap, o canonical e o `llms.txt` são gerados no build.
 
 O plano free do Render dorme sem tráfego, então o primeiro acesso depois de um tempo pode demorar alguns segundos.
