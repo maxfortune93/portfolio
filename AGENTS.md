@@ -51,6 +51,13 @@ Ao mudar o conteúdo, nada disso precisa de edição manual.
 ## CI e deploy
 `.github/workflows/ci.yml` roda lint, typecheck e build; em `main` chama o Deploy Hook do Render (`RENDER_DEPLOY_HOOK_PORTFOLIO`). O serviço está descrito em `render.yaml`. Health check: `/api/health`.
 
+## Cloudflare (alternativa ao Render)
+O mesmo código gera dois alvos: `npm run build` (servidor Node, Render) e `npm run cf:build` (site estático em `out/` + Worker em `cloudflare/worker.ts`). Regras para não quebrar um dos dois:
+- Lógica dinâmica nova vai em `src/lib/` com `Request`/`Response` padrão e `fetch` (sem APIs só do Node), para rodar nos dois. A rota do Next e o Worker só chamam essas funções.
+- Rotas em `src/app/api/*` e `src/middleware.ts` não existem no export estático (o script de build os afasta). Se criar uma rota nova, o Worker precisa de um caminho equivalente em `cloudflare/worker.ts` e em `run_worker_first` no `wrangler.jsonc`.
+- Páginas dinâmicas precisam de `generateStaticParams` (o export exige).
+- Deploy: `.github/workflows/cloudflare.yml` (secrets `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; variable `SITE_URL`). Passo a passo no README.
+
 ## WhatsApp
 Opcional: preencha `profile.whatsapp` (só dígitos com DDI) para mostrar o botão na seção de contato. Vazio, o botão não aparece.
 
