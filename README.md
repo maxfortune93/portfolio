@@ -54,7 +54,7 @@ Passo a passo:
 
 Sem os secrets do passo 3, o workflow só valida o build e termina com um aviso amarelo.
 
-Alternativa sem token no GitHub: **Workers & Pages → Create → Import a repository** (Workers Builds). Use `npm run cf:build` como build command e `npx wrangler deploy` como deploy command, e crie a variável de build `NEXT_PUBLIC_SITE_URL`. A Cloudflare constrói e publica a cada push. Para testar localmente: `npm run cf:dev` (http://localhost:8787).
+Alternativa sem token no GitHub: **Workers & Pages → Create → Import a repository** (Workers Builds). Pode deixar o build command padrão (`npm run build`): dentro do Workers Builds ele detecta `WORKERS_CI=1` e gera o site estático sozinho (`npm run cf:build` também funciona). O deploy command é `npx wrangler deploy`. Crie a variável de build `NEXT_PUBLIC_SITE_URL` com o endereço do Worker. A Cloudflare constrói e publica a cada push. Para testar localmente: `npm run cf:dev` (http://localhost:8787).
 
 ### E-mail na Cloudflare
 O formulário envia pela API do Resend (um `fetch`, funciona no Render e na Cloudflare). O Email Sending da Cloudflare (beta) exige DNS na Cloudflare, ou seja, um domínio próprio, e o envio para qualquer destinatário só existe no plano pago de Workers (enviar só para endereços verificados na sua conta é grátis). Sem domínio, use o Resend.

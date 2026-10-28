@@ -52,7 +52,7 @@ Ao mudar o conteúdo, nada disso precisa de edição manual.
 `.github/workflows/ci.yml` roda lint, typecheck e build; em `main` chama o Deploy Hook do Render (`RENDER_DEPLOY_HOOK_PORTFOLIO`). O serviço está descrito em `render.yaml`. Health check: `/api/health`.
 
 ## Cloudflare (alternativa ao Render)
-O mesmo código gera dois alvos: `npm run build` (servidor Node, Render) e `npm run cf:build` (site estático em `out/` + Worker em `cloudflare/worker.ts`). Regras para não quebrar um dos dois:
+O mesmo código gera dois alvos: `npm run build` (servidor Node, Render) e o site estático em `out/` + Worker em `cloudflare/worker.ts`. `npm run build` escolhe sozinho (`scripts/build.mjs`): dentro do Workers Builds (`WORKERS_CI=1`) gera o estático; em qualquer outro lugar faz o build normal. `npm run cf:build` força o estático. Regras para não quebrar um dos dois:
 - Lógica dinâmica nova vai em `src/lib/` com `Request`/`Response` padrão e `fetch` (sem APIs só do Node), para rodar nos dois. A rota do Next e o Worker só chamam essas funções.
 - Rotas em `src/app/api/*` e `src/middleware.ts` não existem no export estático (o script de build os afasta). Se criar uma rota nova, o Worker precisa de um caminho equivalente em `cloudflare/worker.ts` e em `run_worker_first` no `wrangler.jsonc`.
 - Páginas dinâmicas precisam de `generateStaticParams` (o export exige).
