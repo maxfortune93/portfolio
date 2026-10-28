@@ -1,0 +1,77 @@
+name: Cloudflare
+
+# Gera o site estático (out/) e publica o Worker na Cloudflare.
+# Em PR e em branches só valida o build. Em push na main (ou manualmente), publica.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build static site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Warn if SITE_URL is missing
+        run: |
+          if [ -z "$SITE_URL" ]; then
+            echo "::warning title=SITE_URL not set::Canonical, sitemap and llms.txt will use a placeholder URL. Set the repository variable SITE_URL (Settings > Secrets and variables > Actions > Variables), e.g. https://marouane-portfolio.<your-subdomain>.workers.dev"
+          fi
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: npm run cf:build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://example.com' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: out
+          retention-days: 7
+
+  deploy:
+    name: deploy to Cloudflare
+    needs: build
+    if: (github.ref == 'refs/heads/main' && github.event_name == 'push') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: out
+      - name: Deploy with Wrangler
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning title=Cloudflare deploy skipped::Secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are not set, so nothing was published. See README > Deploy (Cloudflare)."
+            echo "### Cloudflare deploy skipped" >> "$GITHUB_STEP_SUMMARY"
+            echo "Add the secrets \`CLOUDFLARE_API_TOKEN\` and \`CLOUDFLARE_ACCOUNT_ID\` (see README)." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if ! npx wrangler deploy > deploy.log 2>&1; then
+            cat deploy.log
+            exit 1
+          fi
+          cat deploy.log
+          url=$(grep -oE 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "### Cloudflare deploy done" >> "$GITHUB_STEP_SUMMARY"
+          [ -n "$url" ] && echo "$url" >> "$GITHUB_STEP_SUMMARY"
+          exit 0
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

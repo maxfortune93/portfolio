@@ -1,9 +1,14 @@
 import { ImageResponse } from 'next/og';
-import { getDictionary, isLocale, profile } from '@/content';
+import { getDictionary, isLocale, locales, profile } from '@/content';
 
 export const alt = 'Marouane Pondikpa';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
+
+// Gera uma imagem por idioma no build (necessário também para o export estático).
+export function generateStaticParams() {
+  return locales.map((lang) => ({ lang }));
+}
 
 export default function OpenGraphImage({ params }: { params: { lang: string } }) {
   const dict = getDictionary(isLocale(params.lang) ? params.lang : 'pt');

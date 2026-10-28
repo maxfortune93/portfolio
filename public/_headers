@@ -1,0 +1,7 @@
+# Cabeçalhos dos arquivos estáticos na Cloudflare (Workers Assets).
+# O Next exporta a imagem de compartilhamento sem extensão, então o tipo precisa ser explícito.
+/*/opengraph-image
+  Content-Type: image/png
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
