@@ -124,17 +124,17 @@ export const pt: Dictionary = {
       {
         title: 'Engenheiro de Software Backend',
         organization: 'Teddy Open Finance',
-        period: '07/2024 – atual',
+        period: '07/2024 – 09/2026',
         location: 'São Paulo, SP (remoto)',
         description:
           'Fintech de Open Finance. Projetos: Consórcios (Conkey) e Movix (financiamento e refinanciamento de veículos).',
         highlights: [
-          'Construo microsserviços e APIs REST com Node.js, NestJS e TypeScript, usando AWS SQS e Redis para processamento assíncrono e comunicação entre serviços.',
+          'Construí microsserviços e APIs REST com Node.js, NestJS e TypeScript, usando AWS SQS e Redis para processamento assíncrono e comunicação entre serviços.',
           'Criei o boilerplate base dos microsserviços da squad, padronizando estrutura, configuração e arquitetura e reduzindo o esforço para criar novos serviços.',
           'Automatizei processos da mesa de operações para simulação e propostas, reduzindo cerca de 60% do trabalho manual.',
           'Otimizei o processamento da base Molicar de cerca de 7 horas para 10 minutos (redução de ~97%).',
           'Reestruturei o processamento assíncrono com BullMQ e Redis e criei um dashboard de monitoramento de filas, com reprocessamento manual de jobs.',
-          'Implementei observabilidade e rastreabilidade, registrando falhas no Amazon DynamoDB, e escrevo testes unitários, de integração e e2e com Jest.',
+          'Implementei observabilidade e rastreabilidade, registrando falhas no Amazon DynamoDB, e escrevi testes unitários, de integração e e2e com Jest.',
         ],
         tech: [
           'Node.js',
