@@ -18,7 +18,7 @@ export const profile = {
   siteRepo: 'https://github.com/maxfortune93/portfolio',
   location: { city: 'São Paulo', region: 'SP', country: 'BR', remote: true },
   /**
-   * CV em PDF dentro de /public/pdf, por idioma da página.
+   * CV em PDF dentro de /public/pdf, um por idioma da página.
    * `language` é o idioma do arquivo; o botão avisa quando difere do idioma da página.
    */
   resumes: {
@@ -28,14 +28,14 @@ export const profile = {
       filename: 'CV_Marouane_Pondikpa_Backend.pdf',
     },
     en: {
-      href: '/pdf/CV_Marouane_Pondikpa_Backend.pdf',
-      language: 'pt',
-      filename: 'CV_Marouane_Pondikpa_Backend.pdf',
+      href: '/pdf/CV_Marouane_Pondikpa_Backend_EN.pdf',
+      language: 'en',
+      filename: 'CV_Marouane_Pondikpa_Backend_EN.pdf',
     },
     fr: {
-      href: '/pdf/resume_fr.pdf',
+      href: '/pdf/CV_Marouane_Pondikpa_Backend_FR.pdf',
       language: 'fr',
-      filename: 'Marouane_Pondikpa_CV_FR.pdf',
+      filename: 'CV_Marouane_Pondikpa_Backend_FR.pdf',
     },
   },
   /**

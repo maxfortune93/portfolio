@@ -49,7 +49,7 @@ export const fr: Dictionary = {
     title: 'À propos',
     paragraphs: [
       "Je suis ingénieur logiciel backend, avec plus de 5 ans d'expérience, surtout en fintech. Je travaille avec Node.js, NestJS et TypeScript, PostgreSQL, Redis et AWS, et je participe à l'architecture et à l'évolution de microservices et d'API REST.",
-      "Mon travail tourne autour du traitement et de l'intégration : files avec SQS et BullMQ, automatisations avec RPA et SFTP, intégrations avec des partenaires. Résultats récents : j'ai ramené le traitement d'une base d'environ 7 heures à 10 minutes et automatisé une table d'opérations, supprimant environ 60 % du travail manuel.",
+      "Mon travail tourne autour du traitement et de l'intégration : files avec SQS et BullMQ, automatisations avec RPA et SFTP, intégrations avec des partenaires. Résultats récents : j'ai ramené le traitement d'une base d'environ 7 heures à 10 minutes et automatisé des processus de l'équipe opérations, supprimant environ 60 % du travail manuel.",
       "J'écris aussi des tests automatisés, je m'occupe de l'observabilité et je travaille en étroite collaboration avec les équipes opérations et métier. J'ai commencé comme développeur full stack, donc je me déplace aussi dans React, Next.js et Angular.",
       'Je vis à São Paulo, je travaille à distance et je suis ouvert aux nouvelles opportunités.',
     ],
@@ -125,17 +125,17 @@ export const fr: Dictionary = {
       {
         title: 'Ingénieur Logiciel Backend',
         organization: 'Teddy Open Finance',
-        period: '07/2024 – aujourd’hui',
+        period: '07/2024 – 09/2026',
         location: 'São Paulo, SP (à distance)',
         description:
-          'Fintech d’Open Finance. Projets : Consórcios (Conkey) et Movix (financement et refinancement de véhicules).',
+          'Fintech d’Open Finance. Projets : Consórcios (Conkey, plans d’achat en groupe) et Movix (financement et refinancement de véhicules).',
         highlights: [
-          'Je construis des microservices et des API REST avec Node.js, NestJS et TypeScript, en utilisant AWS SQS et Redis pour le traitement asynchrone et la communication entre services.',
+          'J’ai construit des microservices et des API REST avec Node.js, NestJS et TypeScript, en utilisant AWS SQS et Redis pour le traitement asynchrone et la communication entre services.',
           'J’ai créé le boilerplate de base des microservices de la squad, en standardisant structure, configuration et architecture et en réduisant l’effort de création de nouveaux services.',
-          'J’ai automatisé des processus de la table d’opérations pour les simulations et propositions, réduisant le travail manuel d’environ 60 %.',
+          'J’ai automatisé des processus de l’équipe opérations pour les simulations et propositions, réduisant le travail manuel d’environ 60 %.',
           'J’ai optimisé le traitement de la base Molicar d’environ 7 heures à 10 minutes (environ 97 % de moins).',
           'J’ai restructuré le traitement asynchrone avec BullMQ et Redis et créé un tableau de bord de suivi des files, avec retraitement manuel des jobs.',
-          'J’ai mis en place observabilité et traçabilité, en enregistrant les échecs dans Amazon DynamoDB, et j’écris des tests unitaires, d’intégration et e2e avec Jest.',
+          'J’ai mis en place observabilité et traçabilité, en enregistrant les échecs dans Amazon DynamoDB, et j’ai écrit des tests unitaires, d’intégration et e2e avec Jest.',
         ],
         tech: [
           'Node.js',
@@ -194,7 +194,7 @@ export const fr: Dictionary = {
         period: '07/2021 – 01/2023',
         location: 'Fintech · São Paulo, SP (à distance)',
         highlights: [
-          'J’ai participé au développement du portail Back Office de crédit consigné, contribuant à l’évolution des processus opérationnels de la fintech.',
+          'J’ai participé au développement du portail Back Office de prêts avec retenue sur salaire (crédito consignado), contribuant à l’évolution des processus opérationnels de la fintech.',
           'J’ai développé une automatisation de génération de rapports financiers et fait évoluer des portails internes de Ressources Humaines et de Service Client.',
         ],
         tech: [

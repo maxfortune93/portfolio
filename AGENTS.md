@@ -30,7 +30,7 @@ Não é preciso mexer em componentes para trocar textos, projetos, stack ou link
 
 **Adicionar um idioma**: inclua o código em `locales` (`locales.ts`), crie `dictionaries/<codigo>.ts` com o tipo `Dictionary`, registre em `src/content/index.ts` e preencha `text.<codigo>` em cada projeto. O TypeScript aponta o que faltar.
 
-**Trocar o CV**: coloque o PDF em `public/pdf/` e ajuste `profile.resumes` (um por idioma da página). Hoje PT e EN usam o CV em português e FR usa o CV em francês; o botão indica o idioma do arquivo quando difere do da página. Para criar CV em inglês, adicione o PDF e aponte `en` para ele.
+**Trocar o CV**: coloque o PDF em `public/pdf/` e ajuste `profile.resumes` (um por idioma da página). Cada idioma tem o seu CV (`..._Backend.pdf` em português, `_EN` e `_FR`). Ao atualizar o CV, atualize os três arquivos. O botão indica o idioma do arquivo quando ele difere do da página.
 
 
 ## Como o site é montado
