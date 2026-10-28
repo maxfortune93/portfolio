@@ -44,18 +44,20 @@ Alternativa ao Render, sem "dormir" por falta de tráfego: o site é gerado como
 
 Passo a passo:
 
-1. Crie uma conta em cloudflare.com (não precisa de cartão para o plano grátis dos Workers).
-2. Em **My Profile → API Tokens → Create Token**, use o modelo **Edit Cloudflare Workers** e copie o token. O **Account ID** aparece na página inicial da conta.
+1. Crie uma conta em cloudflare.com. Em **Workers & Pages** aparece o seu subdomínio `workers.dev` (dá para trocar em **Your subdomain → Change**). A URL do site fica `https://marouane-portfolio.<seu-subdominio>.workers.dev`.
+2. Crie o token em **Account API tokens → Create Token** e, em *Permission policies*, escolha **Edit Cloudflare Workers**. Restrinja o escopo à sua conta e copie o token (ele só aparece uma vez). O **Account ID** está descrito em *Find account and zone IDs* na documentação da Cloudflare.
 3. No GitHub: **Settings → Secrets and variables → Actions**:
    - Secrets: `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`
    - Variable: `SITE_URL` com o endereço final, ex.: `https://marouane-portfolio.<seu-subdominio>.workers.dev` (entra no canonical, sitemap e `llms.txt`)
 4. Rode o workflow **Cloudflare** (aba Actions → Run workflow) ou faça push na `main`. O primeiro deploy cria o Worker `marouane-portfolio`; a URL aparece no resumo da execução.
 5. Guarde a chave do e-mail como segredo do Worker (uma vez): `npx wrangler secret put RESEND_API_KEY`, ou no painel em **Workers → marouane-portfolio → Settings → Variables and secrets**. `CONTACT_TO_EMAIL` é opcional.
 
-Sem os secrets do passo 3, o workflow só valida o build e termina com um aviso amarelo. Para testar localmente: `npm run cf:dev` (http://localhost:8787).
+Sem os secrets do passo 3, o workflow só valida o build e termina com um aviso amarelo.
+
+Alternativa sem token no GitHub: **Workers & Pages → Create → Import a repository** (Workers Builds). Use `npm run cf:build` como build command e `npx wrangler deploy` como deploy command, e crie a variável de build `NEXT_PUBLIC_SITE_URL`. A Cloudflare constrói e publica a cada push. Para testar localmente: `npm run cf:dev` (http://localhost:8787).
 
 ### E-mail na Cloudflare
-O formulário envia pela API do Resend (um `fetch`, funciona no Render e na Cloudflare). A Cloudflare tem serviço próprio de e-mail, mas ele exige um domínio próprio configurado na Cloudflare; sem domínio, use o Resend.
+O formulário envia pela API do Resend (um `fetch`, funciona no Render e na Cloudflare). O Email Sending da Cloudflare (beta) exige DNS na Cloudflare, ou seja, um domínio próprio, e o envio para qualquer destinatário só existe no plano pago de Workers (enviar só para endereços verificados na sua conta é grátis). Sem domínio, use o Resend.
 
 ## Feito para ser encontrado
 O site gera `/llms.txt`, `/llms-full.txt`, `/profile.json`, `/sitemap.xml`, `/robots.txt`,
