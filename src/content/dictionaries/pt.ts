@@ -26,7 +26,9 @@ export const pt: Dictionary = {
     subtitle:
       'Mais de 5 anos construindo microsserviços, APIs REST e processamento assíncrono, a maior parte em fintechs, com Node.js, NestJS, TypeScript, PostgreSQL, Redis e AWS.',
     ctaProjects: 'Ver projetos',
-    ctaResume: 'Baixar CV',
+    ctaViewResume: 'Ver CV',
+    ctaDownload: 'PDF',
+    ctaDownloadLabel: 'Baixar CV em PDF',
     factsTitle: 'Resumo',
     factRole: 'Função',
     factStack: 'Stack principal',

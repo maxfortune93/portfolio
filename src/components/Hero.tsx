@@ -1,6 +1,6 @@
 import type { Dictionary, Locale } from '@/content';
 import { profile } from '@/content';
-import { DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
+import { ArrowUpRightIcon, DownloadIcon, GithubIcon, LinkedinIcon } from './Icons';
 
 export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
   const { hero } = dict;
@@ -48,19 +48,30 @@ export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
 
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href="#projects"
+              href={resume.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              type="application/pdf"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-fg shadow-lg shadow-accent/30 transition-transform hover:-translate-y-0.5"
+            >
+              {hero.ctaViewResume}
+              <ArrowUpRightIcon />
+            </a>
+            <a
+              href="#projects"
+              className="glass inline-flex items-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
             >
               {hero.ctaProjects}
             </a>
             <a
               href={resume.href}
               download={resume.filename}
-              className="glass inline-flex items-center gap-2 rounded-full border border-line px-6 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
+              aria-label={hero.ctaDownloadLabel}
+              title={hero.ctaDownloadLabel}
+              className="glass inline-flex h-12 items-center gap-1.5 rounded-full border border-line px-4 text-sm font-semibold text-muted transition-colors hover:border-accent hover:text-accent"
             >
               <DownloadIcon />
-              {hero.ctaResume}
-              {resume.language !== lang ? ` (${resume.language.toUpperCase()})` : ''}
+              {hero.ctaDownload}
             </a>
             <a
               href={profile.links.github}

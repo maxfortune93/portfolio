@@ -26,7 +26,9 @@ export const en: Dictionary = {
     subtitle:
       '5+ years building microservices, REST APIs and asynchronous processing, mostly in fintech, with Node.js, NestJS, TypeScript, PostgreSQL, Redis and AWS.',
     ctaProjects: 'View projects',
-    ctaResume: 'Download résumé',
+    ctaViewResume: 'View résumé',
+    ctaDownload: 'PDF',
+    ctaDownloadLabel: 'Download résumé as PDF',
     factsTitle: 'At a glance',
     factRole: 'Role',
     factStack: 'Main stack',

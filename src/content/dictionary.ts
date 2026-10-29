@@ -29,7 +29,9 @@ export interface Dictionary {
     role: string;
     subtitle: string;
     ctaProjects: string;
-    ctaResume: string;
+    ctaViewResume: string;
+    ctaDownload: string;
+    ctaDownloadLabel: string;
     factsTitle: string;
     factRole: string;
     factStack: string;
