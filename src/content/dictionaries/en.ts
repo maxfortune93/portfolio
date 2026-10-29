@@ -23,7 +23,6 @@ export const en: Dictionary = {
   hero: {
     availability: 'Open to new opportunities',
     role: 'Software Engineer',
-    roleFocus: 'Backend and full stack',
     subtitle:
       '5+ years building microservices, REST APIs and asynchronous processing, mostly in fintech, with Node.js, NestJS, TypeScript, PostgreSQL, Redis and AWS. I also build interfaces with React, Next.js and Angular.',
     ctaProjects: 'View projects',

@@ -23,7 +23,6 @@ export const fr: Dictionary = {
   hero: {
     availability: 'Ouvert aux nouvelles opportunités',
     role: 'Ingénieur Logiciel',
-    roleFocus: 'Backend et full stack',
     subtitle:
       'Plus de 5 ans à concevoir des microservices, des API REST et des traitements asynchrones, surtout en fintech, avec Node.js, NestJS, TypeScript, PostgreSQL, Redis et AWS. Je construis aussi des interfaces avec React, Next.js et Angular.',
     ctaProjects: 'Voir les projets',
