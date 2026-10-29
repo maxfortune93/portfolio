@@ -44,13 +44,13 @@ Alternativa ao Render, sem "dormir" por falta de tráfego: o site é gerado como
 
 Passo a passo:
 
-1. Crie uma conta em cloudflare.com. Em **Workers & Pages** aparece o seu subdomínio `workers.dev` (dá para trocar em **Your subdomain → Change**). A URL do site fica `https://marouane-portfolio.<seu-subdominio>.workers.dev`.
+1. Crie uma conta em cloudflare.com. Em **Workers & Pages** aparece o seu subdomínio `workers.dev` (dá para trocar em **Your subdomain → Change**). A URL do site fica `https://portfolio.<seu-subdominio>.workers.dev`.
 2. Crie o token em **Account API tokens → Create Token** e, em *Permission policies*, escolha **Edit Cloudflare Workers**. Restrinja o escopo à sua conta e copie o token (ele só aparece uma vez). O **Account ID** está descrito em *Find account and zone IDs* na documentação da Cloudflare.
 3. No GitHub: **Settings → Secrets and variables → Actions**:
    - Secrets: `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID`
-   - Variable: `SITE_URL` com o endereço final, ex.: `https://marouane-portfolio.<seu-subdominio>.workers.dev` (entra no canonical, sitemap e `llms.txt`)
-4. Rode o workflow **Cloudflare** (aba Actions → Run workflow) ou faça push na `main`. O primeiro deploy cria o Worker `marouane-portfolio`; a URL aparece no resumo da execução.
-5. Guarde a chave do e-mail como segredo do Worker (uma vez): `npx wrangler secret put RESEND_API_KEY`, ou no painel em **Workers → marouane-portfolio → Settings → Variables and secrets**. `CONTACT_TO_EMAIL` é opcional.
+   - Variable: `SITE_URL` com o endereço final, ex.: `https://portfolio.<seu-subdominio>.workers.dev` (entra no canonical, sitemap e `llms.txt`)
+4. Rode o workflow **Cloudflare** (aba Actions → Run workflow) ou faça push na `main`. O primeiro deploy cria o Worker `portfolio`; a URL aparece no resumo da execução.
+5. Guarde a chave do e-mail como segredo do Worker (uma vez): `npx wrangler secret put RESEND_API_KEY`, ou no painel em **Workers → portfolio → Settings → Variables and secrets** (tipo **Secret**, na aba Production). `CONTACT_TO_EMAIL` é opcional.
 
 Sem os secrets do passo 3, o workflow só valida o build e termina com um aviso amarelo.
 

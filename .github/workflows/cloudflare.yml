@@ -26,7 +26,7 @@ jobs:
       - name: Warn if SITE_URL is missing
         run: |
           if [ -z "$SITE_URL" ]; then
-            echo "::warning title=SITE_URL not set::Canonical, sitemap and llms.txt will use a placeholder URL. Set the repository variable SITE_URL (Settings > Secrets and variables > Actions > Variables), e.g. https://marouane-portfolio.<your-subdomain>.workers.dev"
+            echo "::warning title=SITE_URL not set::Canonical, sitemap and llms.txt will use a placeholder URL. Set the repository variable SITE_URL (Settings > Secrets and variables > Actions > Variables), e.g. https://portfolio.<your-subdomain>.workers.dev"
           fi
         env:
           SITE_URL: ${{ vars.SITE_URL }}

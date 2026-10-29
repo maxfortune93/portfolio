@@ -22,7 +22,12 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === '/api/health') {
-      return Response.json({ status: 'ok', service: 'portfolio-worker' });
+      // `emailConfigured` só diz se o segredo chegou ao Worker (nunca expõe o valor).
+      return Response.json({
+        status: 'ok',
+        service: 'portfolio-worker',
+        emailConfigured: Boolean(env.RESEND_API_KEY),
+      });
     }
 
     if (url.pathname === '/api/contact') {

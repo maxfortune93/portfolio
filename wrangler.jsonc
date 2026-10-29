@@ -1,7 +1,7 @@
 {
   // Worker + site estático. Deploy: npm run cf:deploy (ou o workflow .github/workflows/cloudflare.yml).
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "marouane-portfolio",
+  "name": "portfolio",
   "main": "cloudflare/worker.ts",
   "compatibility_date": "2026-10-01",
   "assets": {
