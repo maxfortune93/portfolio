@@ -128,9 +128,43 @@ export function ContactForm({ lang, labels }: ContactFormProps) {
       <p
         role="status"
         aria-live="polite"
-        className={`min-h-6 text-sm ${status === 'error' ? 'text-danger' : 'text-accent'}`}
+        className={`flex min-h-6 items-start gap-2 text-sm ${
+          status === 'error'
+            ? 'text-danger'
+            : status === 'success'
+              ? 'text-success'
+              : 'text-muted'
+        }`}
       >
-        {feedback}
+        {feedback && status === 'success' ? (
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="mt-0.5 h-4 w-4 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m5 12 5 5L20 7" />
+          </svg>
+        ) : null}
+        {feedback && status === 'error' ? (
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="mt-0.5 h-4 w-4 shrink-0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 8v5m0 3.5v.01M10.3 3.9 2.4 17.6A2 2 0 0 0 4.1 20.6h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+          </svg>
+        ) : null}
+        <span>{feedback}</span>
       </p>
     </form>
   );
