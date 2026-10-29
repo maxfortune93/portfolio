@@ -2,10 +2,10 @@ import type { Dictionary } from '../dictionary';
 
 export const fr: Dictionary = {
   meta: {
-    title: 'Marouane Pondikpa · Ingénieur Logiciel Backend',
+    title: 'Marouane Pondikpa · Ingénieur Logiciel',
     description:
-      'Portfolio de Marouane Pondikpa, ingénieur logiciel backend à São Paulo avec plus de 5 ans en fintech. Node.js, NestJS, TypeScript, PostgreSQL, Redis et AWS.',
-    ogAlt: 'Marouane Pondikpa, Ingénieur Logiciel Backend',
+      'Portfolio de Marouane Pondikpa, ingénieur logiciel à São Paulo avec plus de 5 ans en fintech. Backend avec Node.js, NestJS, PostgreSQL, Redis et AWS, et front-end avec React, Next.js et Angular.',
+    ogAlt: 'Marouane Pondikpa, Ingénieur Logiciel',
   },
   nav: {
     about: 'À propos',
@@ -22,9 +22,9 @@ export const fr: Dictionary = {
   },
   hero: {
     availability: 'Ouvert aux nouvelles opportunités',
-    role: 'Ingénieur Logiciel Backend',
+    role: 'Ingénieur Logiciel',
     subtitle:
-      'Plus de 5 ans à concevoir des microservices, des API REST et des traitements asynchrones, surtout en fintech, avec Node.js, NestJS, TypeScript, PostgreSQL, Redis et AWS.',
+      'Plus de 5 ans à concevoir des microservices, des API REST et des traitements asynchrones, surtout en fintech, avec Node.js, NestJS, TypeScript, PostgreSQL, Redis et AWS. Je construis aussi des interfaces avec React, Next.js et Angular.',
     ctaProjects: 'Voir les projets',
     ctaViewResume: 'Voir le CV',
     ctaDownload: 'PDF',
@@ -50,9 +50,9 @@ export const fr: Dictionary = {
   about: {
     title: 'À propos',
     paragraphs: [
-      "Je suis ingénieur logiciel backend, avec plus de 5 ans d'expérience, surtout en fintech. Je travaille avec Node.js, NestJS et TypeScript, PostgreSQL, Redis et AWS, et je participe à l'architecture et à l'évolution de microservices et d'API REST.",
+      "Je suis ingénieur logiciel, avec plus de 5 ans d'expérience, surtout en fintech, avec une dominante backend. Je travaille avec Node.js, NestJS et TypeScript, PostgreSQL, Redis et AWS, et je participe à l'architecture et à l'évolution de microservices et d'API REST.",
       "Mon travail tourne autour du traitement et de l'intégration : files avec SQS et BullMQ, automatisations avec RPA et SFTP, intégrations avec des partenaires. Résultats récents : j'ai ramené le traitement d'une base d'environ 7 heures à 10 minutes et automatisé des processus de l'équipe opérations, supprimant environ 60 % du travail manuel.",
-      "J'écris aussi des tests automatisés, je m'occupe de l'observabilité et je travaille en étroite collaboration avec les équipes opérations et métier. J'ai commencé comme développeur full stack, donc je me déplace aussi dans React, Next.js et Angular.",
+      "J'écris aussi des tests automatisés, je m'occupe de l'observabilité et je travaille en étroite collaboration avec les équipes opérations et métier. J'ai commencé comme développeur full stack et je continue à construire des interfaces avec React, Next.js et Angular, comme dans ce portfolio et dans Curtinho.",
       'Je vis à São Paulo, je travaille à distance et je suis ouvert aux nouvelles opportunités.',
     ],
   },
@@ -73,6 +73,7 @@ export const fr: Dictionary = {
           'Microservices',
         ],
       },
+      { name: 'Front-end', items: ['React', 'Next.js', 'Angular'] },
       {
         name: 'Bases de données',
         items: [
@@ -117,7 +118,6 @@ export const fr: Dictionary = {
         name: 'Tests',
         items: ['Jest', 'Tests unitaires', "Tests d'intégration", 'Tests e2e'],
       },
-      { name: 'Front-end', items: ['React', 'Next.js', 'Angular'] },
     ],
   },
   experience: {
