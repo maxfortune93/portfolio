@@ -46,5 +46,5 @@ export const profile = {
   /** Foto de perfil opcional, ex.: '/images/profile.jpg'. Sem foto, usa as iniciais. */
   photo: null as string | null,
   /** Tecnologias que aparecem no resumo do topo e no JSON-LD. */
-  mainStack: ['Node.js', 'NestJS', 'TypeScript', 'PostgreSQL', 'AWS'],
+  mainStack: ['Node.js', 'NestJS', 'TypeScript', 'PostgreSQL', 'AWS', 'React', 'Next.js'],
 } as const;

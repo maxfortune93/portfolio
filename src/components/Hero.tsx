@@ -7,7 +7,7 @@ export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
   const resume = profile.resumes[lang];
   const [firstName, ...rest] = profile.name.split(' ');
   const facts = [
-    { label: hero.factRole, value: hero.role },
+    { label: hero.factRole, value: `${hero.role} · ${hero.roleFocus}` },
     { label: hero.factStack, value: profile.mainStack.join(', ') },
     { label: hero.factStatus, value: hero.factStatusValue },
     ...(profile.showEmail ? [{ label: hero.factContact, value: profile.email }] : []),
@@ -41,6 +41,9 @@ export function Hero({ dict, lang }: { dict: Dictionary; lang: Locale }) {
             </span>
             <span className="gradient-text mt-5 block text-2xl font-medium tracking-tight sm:text-4xl">
               {hero.role}
+            </span>
+            <span className="mt-1 block text-lg font-normal tracking-normal text-muted sm:text-xl">
+              {hero.roleFocus}
             </span>
           </h1>
 

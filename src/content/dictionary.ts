@@ -27,6 +27,8 @@ export interface Dictionary {
   hero: {
     availability: string;
     role: string;
+    /** Complemento do cargo, ex.: 'Backend e full stack'. */
+    roleFocus: string;
     subtitle: string;
     ctaProjects: string;
     ctaViewResume: string;

@@ -13,7 +13,7 @@ export function buildLlmsTxt(): string {
   const lines = [
     `# ${profile.name}`,
     '',
-    `> ${dict.hero.role}. ${dict.hero.subtitle} ${dict.hero.availability}.`,
+    `> ${dict.hero.role} (${dict.hero.roleFocus}). ${dict.hero.subtitle} ${dict.hero.availability}.`,
     '',
     `Main stack: ${profile.mainStack.join(', ')}.`,
     '',
@@ -52,7 +52,7 @@ export function buildLlmsFullTxt(): string {
   const projects = getProjects(EN);
 
   const lines = [
-    `# ${profile.name}: ${dict.hero.role}`,
+    `# ${profile.name}: ${dict.hero.role} (${dict.hero.roleFocus})`,
     '',
     dict.hero.subtitle,
     '',
@@ -149,6 +149,7 @@ export function buildProfileJson() {
           {
             title: dict.meta.title,
             role: dict.hero.role,
+            roleFocus: dict.hero.roleFocus,
             summary: dict.hero.subtitle,
             availability: dict.hero.availability,
             about: dict.about.paragraphs,

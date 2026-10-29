@@ -39,7 +39,7 @@ export default function OpenGraphImage({ params }: { params: { lang: string } })
             {profile.name}
           </div>
           <div style={{ display: 'flex', fontSize: 48, color: '#9aa5b5' }}>
-            {dict.hero.role}
+            {`${dict.hero.role} · ${dict.hero.roleFocus}`}
           </div>
         </div>
         <div style={{ display: 'flex', fontSize: 30, color: '#9aa5b5' }}>

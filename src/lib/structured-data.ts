@@ -18,7 +18,7 @@ export function buildStructuredData(locale: Locale) {
         '@type': 'Person',
         '@id': personId,
         name: profile.name,
-        jobTitle: dict.hero.role,
+        jobTitle: `${dict.hero.role} (${dict.hero.roleFocus})`,
         url: siteUrl,
         email: profile.showEmail ? `mailto:${profile.email}` : undefined,
         description: dict.meta.description,

@@ -2,10 +2,10 @@ import type { Dictionary } from '../dictionary';
 
 export const en: Dictionary = {
   meta: {
-    title: 'Marouane Pondikpa · Backend Software Engineer',
+    title: 'Marouane Pondikpa · Software Engineer',
     description:
-      'Portfolio of Marouane Pondikpa, a backend software engineer in São Paulo with 5+ years in fintech. Node.js, NestJS, TypeScript, PostgreSQL, Redis and AWS.',
-    ogAlt: 'Marouane Pondikpa, Backend Software Engineer',
+      'Portfolio of Marouane Pondikpa, a software engineer in São Paulo with 5+ years in fintech. Backend with Node.js, NestJS, PostgreSQL, Redis and AWS, and front end with React, Next.js and Angular.',
+    ogAlt: 'Marouane Pondikpa, Software Engineer',
   },
   nav: {
     about: 'About',
@@ -22,9 +22,10 @@ export const en: Dictionary = {
   },
   hero: {
     availability: 'Open to new opportunities',
-    role: 'Backend Software Engineer',
+    role: 'Software Engineer',
+    roleFocus: 'Backend and full stack',
     subtitle:
-      '5+ years building microservices, REST APIs and asynchronous processing, mostly in fintech, with Node.js, NestJS, TypeScript, PostgreSQL, Redis and AWS.',
+      '5+ years building microservices, REST APIs and asynchronous processing, mostly in fintech, with Node.js, NestJS, TypeScript, PostgreSQL, Redis and AWS. I also build interfaces with React, Next.js and Angular.',
     ctaProjects: 'View projects',
     ctaViewResume: 'View résumé',
     ctaDownload: 'PDF',
@@ -49,9 +50,9 @@ export const en: Dictionary = {
   about: {
     title: 'About me',
     paragraphs: [
-      'I am a backend software engineer with 5+ years of experience, mostly in fintech. I work with Node.js, NestJS and TypeScript, PostgreSQL, Redis and AWS, and I take part in the architecture and evolution of microservices and REST APIs.',
+      'I am a software engineer with 5+ years of experience, mostly in fintech, with a backend focus. I work with Node.js, NestJS and TypeScript, PostgreSQL, Redis and AWS, and I take part in the architecture and evolution of microservices and REST APIs.',
       'My work centers on processing and integration: queues with SQS and BullMQ, automation with RPA and SFTP, partner integrations. Recent results: I cut the processing time of one dataset from about 7 hours to 10 minutes and automated an operations desk, removing about 60% of the manual work.',
-      'I also write automated tests, take care of observability and work closely with operations and business teams. I started as a full stack developer, so I also move around React, Next.js and Angular.',
+      'I also write automated tests, take care of observability and work closely with operations and business teams. I started as a full stack developer and keep building interfaces with React, Next.js and Angular, as in this portfolio and in Curtinho.',
       'I live in São Paulo, work remotely and am open to new opportunities.',
     ],
   },
@@ -72,6 +73,7 @@ export const en: Dictionary = {
           'Microservices',
         ],
       },
+      { name: 'Front end', items: ['React', 'Next.js', 'Angular'] },
       {
         name: 'Databases',
         items: [
@@ -116,7 +118,6 @@ export const en: Dictionary = {
         name: 'Testing',
         items: ['Jest', 'Unit tests', 'Integration tests', 'e2e tests'],
       },
-      { name: 'Front end', items: ['React', 'Next.js', 'Angular'] },
     ],
   },
   experience: {
